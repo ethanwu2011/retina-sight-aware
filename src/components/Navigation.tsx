@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { Menu, X } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -18,8 +19,9 @@ const Navigation = () => {
   const navLinks = [
     { name: 'About', href: '#about' },
     { name: 'How It Works', href: '#how-it-works' },
-    { name: 'Team', href: '#team' },
+    { name: 'Team', href: '/team', isRoute: true },
     { name: 'Beyond Cancer', href: '#beyond-cancer' },
+    { name: 'Future Outlook', href: '#future-outlook' },
   ];
 
   return (
@@ -39,13 +41,23 @@ const Navigation = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-8">
             {navLinks.map((link) => (
-              <a 
-                key={link.name} 
-                href={link.href} 
-                className="text-sm font-medium text-gray-600 hover:text-foresight-navy transition-colors duration-200"
-              >
-                {link.name}
-              </a>
+              link.isRoute ? (
+                <Link
+                  key={link.name}
+                  to={link.href}
+                  className="text-sm font-medium text-gray-600 hover:text-foresight-navy transition-colors duration-200"
+                >
+                  {link.name}
+                </Link>
+              ) : (
+                <a 
+                  key={link.name} 
+                  href={link.href} 
+                  className="text-sm font-medium text-gray-600 hover:text-foresight-navy transition-colors duration-200"
+                >
+                  {link.name}
+                </a>
+              )
             ))}
           </div>
 
@@ -70,14 +82,25 @@ const Navigation = () => {
         <div className="md:hidden bg-white">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="block px-3 py-2 text-base font-medium text-gray-600 hover:text-foresight-navy"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {link.name}
-              </a>
+              link.isRoute ? (
+                <Link
+                  key={link.name}
+                  to={link.href}
+                  className="block px-3 py-2 text-base font-medium text-gray-600 hover:text-foresight-navy"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {link.name}
+                </Link>
+              ) : (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className="block px-3 py-2 text-base font-medium text-gray-600 hover:text-foresight-navy"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {link.name}
+                </a>
+              )
             ))}
           </div>
         </div>
