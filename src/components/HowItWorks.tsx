@@ -34,16 +34,20 @@ const HowItWorks = () => {
           if (entry.isIntersecting) {
             entry.target.classList.add('opacity-100', 'translate-y-0');
             entry.target.classList.remove('opacity-0', 'translate-y-10');
+          } else {
+            // Add fade out effect when element leaves viewport
+            entry.target.classList.add('opacity-0', 'translate-y-10');
+            entry.target.classList.remove('opacity-100', 'translate-y-0');
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.1, rootMargin: "-100px 0px" }
     );
 
     const elements = sectionRef.current?.querySelectorAll('.animate-on-scroll');
     elements?.forEach((el, index) => {
       // Add staggered delay based on index
-      el.classList.add(`delay-[${index * 200}ms]`);
+      el.classList.add(`delay-[${index * 300}ms]`);
       observer.observe(el);
     });
 
@@ -62,7 +66,7 @@ const HowItWorks = () => {
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-foresight-gold/10 to-transparent rounded-full blur-3xl"></div>
         
         <div className="relative z-10">
-          <div className="max-w-3xl mx-auto text-center mb-16 animate-on-scroll opacity-0 translate-y-10 transition-all duration-700">
+          <div className="max-w-3xl mx-auto text-center mb-16 animate-on-scroll opacity-0 translate-y-10 transition-all duration-1000">
             <h2 className="heading-lg mb-6">How ForeSight Works</h2>
             <p className="text-lg text-foresight-white/80">
               Our technology transforms routine eye exams into powerful cancer screening tools, 
@@ -74,8 +78,8 @@ const HowItWorks = () => {
             {steps.map((step, index) => (
               <div 
                 key={step.number} 
-                className="border border-foresight-white/10 bg-gradient-to-b from-white/5 to-transparent p-8 rounded-lg backdrop-blur-sm animate-on-scroll opacity-0 translate-y-10 transition-all duration-700"
-                style={{ transitionDelay: `${index * 200}ms` }}
+                className="border border-foresight-white/10 bg-gradient-to-b from-white/5 to-transparent p-8 rounded-lg backdrop-blur-sm animate-on-scroll opacity-0 translate-y-10 transition-all duration-1000 hover:bg-white/10 hover:border-foresight-white/20"
+                style={{ transitionDelay: `${index * 300}ms` }}
               >
                 <div className="text-4xl font-light text-foresight-teal mb-4">{step.number}</div>
                 <h3 className="text-xl font-medium mb-3">{step.title}</h3>
@@ -84,8 +88,8 @@ const HowItWorks = () => {
             ))}
           </div>
           
-          <div className="mt-20 text-center animate-on-scroll opacity-0 translate-y-10 transition-all duration-700" style={{ transitionDelay: '800ms' }}>
-            <a href="#beyond-cancer" className="inline-flex items-center px-6 py-3 border border-foresight-teal/30 text-base font-medium rounded-md text-white hover:bg-foresight-teal/10 transition-all duration-200">
+          <div className="mt-20 text-center animate-on-scroll opacity-0 translate-y-10 transition-all duration-1000" style={{ transitionDelay: '1200ms' }}>
+            <a href="#beyond-cancer" className="inline-flex items-center px-6 py-3 border border-foresight-teal/30 text-base font-medium rounded-md text-white hover:bg-foresight-teal/10 transition-all duration-300 transform hover:scale-105">
               Explore Beyond Cancer
             </a>
           </div>

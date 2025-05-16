@@ -11,14 +11,20 @@ const BeyondCancer = () => {
           if (entry.isIntersecting) {
             entry.target.classList.add('opacity-100', 'translate-y-0');
             entry.target.classList.remove('opacity-0', 'translate-y-10');
+          } else {
+            // Add fade out effect when element leaves viewport
+            entry.target.classList.add('opacity-0', 'translate-y-10');
+            entry.target.classList.remove('opacity-100', 'translate-y-0');
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.1, rootMargin: "-50px 0px" }
     );
 
     const elements = sectionRef.current?.querySelectorAll('.animate-on-scroll');
-    elements?.forEach(el => {
+    elements?.forEach((el, index) => {
+      // Add staggered delay based on index
+      el.classList.add(`delay-[${index * 300}ms]`);
       observer.observe(el);
     });
 
@@ -32,7 +38,7 @@ const BeyondCancer = () => {
   return (
     <section id="beyond-cancer" ref={sectionRef} className="py-24 bg-foresight-light">
       <div className="section-container">
-        <div className="max-w-3xl mx-auto text-center mb-16 animate-on-scroll opacity-0 translate-y-10 transition-all duration-700">
+        <div className="max-w-3xl mx-auto text-center mb-16 animate-on-scroll opacity-0 translate-y-10 transition-all duration-1000">
           <h2 className="heading-lg text-gradient mb-6">Beyond Cancer</h2>
           <p className="text-lg text-gray-700">
             ForeSight is built on groundbreaking research that reveals the connection 
@@ -40,7 +46,7 @@ const BeyondCancer = () => {
           </p>
         </div>
 
-        <div className="bg-white p-8 rounded-lg shadow-sm border border-gray-100 max-w-3xl mx-auto animate-on-scroll opacity-0 translate-y-10 transition-all duration-700 delay-300">
+        <div className="bg-white p-8 rounded-lg shadow-sm border border-gray-100 max-w-3xl mx-auto animate-on-scroll opacity-0 translate-y-10 transition-all duration-1000 delay-300">
           <h3 className="text-xl font-semibold text-foresight-navy mb-4">Beyond Cancer</h3>
           <p className="text-gray-700 mb-4">
             The technology behind ForeSight is not limited to only cancer. Its strength lies in the 

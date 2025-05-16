@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <footer className="bg-foresight-navy text-white">
       <div className="section-container py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           <div className="md:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
               <span className="font-semibold text-xl">ForeSight</span>
@@ -24,14 +24,7 @@ const Footer = () => {
               <li><a href="#about" className="hover:text-white transition-colors">About</a></li>
               <li><a href="#how-it-works" className="hover:text-white transition-colors">How It Works</a></li>
               <li><a href="#team" className="hover:text-white transition-colors">Team</a></li>
-              <li><a href="#research" className="hover:text-white transition-colors">Research</a></li>
-            </ul>
-          </div>
-          
-          <div>
-            <h4 className="text-sm font-semibold uppercase tracking-wider mb-4">Contact</h4>
-            <ul className="space-y-2 text-foresight-white/70">
-              <li><a href="#contact" className="hover:text-white transition-colors">Get in Touch</a></li>
+              <li><a href="#beyond-cancer" className="hover:text-white transition-colors">Beyond Cancer</a></li>
             </ul>
           </div>
         </div>

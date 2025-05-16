@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { Menu, X } from 'lucide-react';
@@ -20,8 +19,7 @@ const Navigation = () => {
     { name: 'About', href: '#about' },
     { name: 'How It Works', href: '#how-it-works' },
     { name: 'Team', href: '#team' },
-    { name: 'Research', href: '#research' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Beyond Cancer', href: '#beyond-cancer' },
   ];
 
   return (
