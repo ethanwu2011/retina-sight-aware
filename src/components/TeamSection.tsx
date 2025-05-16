@@ -1,16 +1,15 @@
-
 import React, { useEffect, useRef } from 'react';
 
 const TeamSection = () => {
   const team = [
     {
       name: "Ethan Wu",
-      role: "Lead Researcher",
+      role: "Lead Innovator",
       description: "MD/PhD Student in the Pitt-CMU MSTP Program with extensive computer science and machine learning experience. Former McKinsey consultant with expertise in healthcare analytics."
     },
     {
       name: "Justin Navidzadeh",
-      role: "Clinical Lead",
+      role: "Bioengineering Lead",
       description: "Medical student with years of bioengineering experience focusing on translational research and clinical applications of retinal imaging technologies."
     },
     {
@@ -72,7 +71,13 @@ const TeamSection = () => {
               style={{ transitionDelay: `${index * 300}ms` }}
             >
               <div className="aspect-square bg-gradient-to-br from-foresight-navy/5 to-foresight-teal/5 rounded-full mb-6 overflow-hidden group-hover:shadow-lg transition-all duration-500 flex items-center justify-center transform group-hover:scale-105">
-                <div className="w-1/2 aspect-square bg-gradient-to-br from-foresight-navy/20 to-foresight-teal/20 rounded-full group-hover:scale-110 transition-transform duration-700"></div>
+                <div className="w-3/4 aspect-square bg-gradient-to-br from-foresight-navy/20 to-foresight-teal/20 rounded-full group-hover:scale-110 transition-transform duration-700 flex items-center justify-center">
+                  <img 
+                    src={"/images/" + (member.name === "Ethan Wu" ? "ethanwu.jpeg" : (member.name === "Justin Navidzadeh" ? "justinnavidzadeh.jpg" : "drjaychhablani.jpg"))} 
+                    alt={member.name + " headshot"} 
+                    className="w-3/4 h-3/4 object-cover rounded-full" 
+                  />
+                </div>
               </div>
               <div className="text-center">
                 <h3 className="text-xl font-medium text-foresight-navy">{member.name}</h3>
