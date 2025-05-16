@@ -1,29 +1,58 @@
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 const TeamSection = () => {
   const team = [
     {
       name: "Ethan Wu",
       role: "Lead Researcher",
-      description: "Medical student at the University of Pittsburgh with a background in machine learning and healthcare analytics."
+      description: "MD/PhD Student in the Pitt-CMU MSTP Program with extensive computer science and machine learning experience. Former McKinsey consultant with expertise in healthcare analytics."
     },
     {
       name: "Justin Navidzadeh",
       role: "Clinical Lead",
-      description: "Medical student focusing on translational research and clinical applications of retinal imaging technologies."
+      description: "Medical student with years of bioengineering experience focusing on translational research and clinical applications of retinal imaging technologies."
     },
     {
       name: "Dr. Jay Chhablani",
       role: "Scientific Advisor",
-      description: "Distinguished professor with expertise in retinal imaging and its applications in systemic disease detection."
+      description: "World leading expert in retinal imaging and ophthalmology with extensive experience in machine learning applications for retinal analysis and disease detection."
     }
   ];
+  
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('opacity-100', 'translate-y-0');
+            entry.target.classList.remove('opacity-0', 'translate-y-10');
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    const elements = sectionRef.current?.querySelectorAll('.animate-on-scroll');
+    elements?.forEach((el, index) => {
+      // Add staggered delay based on index
+      el.classList.add(`delay-[${index * 200}ms]`);
+      observer.observe(el);
+    });
+
+    return () => {
+      elements?.forEach(el => {
+        observer.unobserve(el);
+      });
+    };
+  }, []);
 
   return (
-    <section id="team" className="py-24 bg-white">
+    <section id="team" ref={sectionRef} className="py-24 bg-white">
       <div className="section-container">
-        <div className="max-w-3xl mx-auto text-center mb-16">
+        <div className="max-w-3xl mx-auto text-center mb-16 animate-on-scroll opacity-0 translate-y-10 transition-all duration-700">
           <h2 className="heading-lg text-gradient mb-6">Our Team</h2>
           <p className="text-lg text-gray-700">
             An interdisciplinary team made up of physician-scientists, bioengineers, 
@@ -35,7 +64,8 @@ const TeamSection = () => {
           {team.map((member, index) => (
             <div 
               key={index}
-              className="group"
+              className="group animate-on-scroll opacity-0 translate-y-10 transition-all duration-700"
+              style={{ transitionDelay: `${index * 200}ms` }}
             >
               <div className="aspect-square bg-gradient-to-br from-foresight-navy/5 to-foresight-teal/5 rounded-full mb-6 overflow-hidden group-hover:shadow-lg transition-all duration-300 flex items-center justify-center">
                 <div className="w-1/2 aspect-square bg-gradient-to-br from-foresight-navy/20 to-foresight-teal/20 rounded-full group-hover:scale-110 transition-transform duration-500"></div>
